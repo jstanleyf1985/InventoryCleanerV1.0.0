@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Inventory Cleaner</title>
+  <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="./public/css/style.css" />
+</head>
+
+<body>
+
+  <div id='infoSection' class='col-sm-12'>
+    <span id='invFileAdd' class='col-sm-12 notAdded'><i class="fas fa-camera"></i> Inventory File Not Added</span>
+    <span id='invDBAdd' class='col-sm-12 notAdded'>Database File Not Added</span>
+    <span id='cleanAdd' class='col-sm-12 notAdded'>Cleaned File Not Generated</span>
+    <span id='reloadMSG' class='col-sm-12 notAdded opacity0'>Info Not Provided</span>
+  </div>
+
+  <form id='formdata' class='col-sm-12'>
+    <input id='formdatafile' type="file" class='hidden' name='formdatafile' />
+    <button id='dirtyFileBTN' class='formBTN' type='button'>
+      <span class='num1'>&#x2776; </span>
+      <span id='dirtyFileCheck' class='hidden'>&#x2714;</span>Add
+      Inventory
+      File</button>
+    <p id='formfileErr' class='col-sm-12 hidden err'></p>
+
+    <input id='formcomparisonfile' type='file' class='hidden' name='formcomparisonfile' />
+    <button id='dbFileBTN' class='formBTN hidden' type='button'>
+      <span class='num2'>&#x2777; </span>
+      <span id='dbFileCheck' class='hidden'>&#x2714;</span>Add
+      Database File</button>
+    <p id='databasefileErr' class='col-sm-12 hidden err'></p>
+
+    <button id='dbDeptDescription' class='formBTN hidden' data-toggle='modal' data-target='#dbDeptModal' type='button'>
+      <span class='num2'>&#x2777; </span>
+      <span id='dbDeptFileCheck' class='hidden'>&#x2714;</span>
+      Select Department</button>
+
+    <button id='submitBTN' class='submitBTN' type='button'><span class='num3'>&#x2778; </span>Get Clean Inventory
+      File</button>
+    <button id='howToUseProgram' type='button' class='formBTN' data-toggle='modal' data-target='#howToUseModal'>How to
+      use this program</button>
+
+    <div id='btnWrap' class='pad0 flearfix'>
+      <button id='dbConnectBTN' type='button' data-toggle='modal' data-target='#dbConfigModal'>&nbsp;</button>
+      <button id='dbDelBTN' type='button' class='bgred'>&#x2716;
+        Delete</button>
+      <span </div> <p id='submitfileErr' class='col-sm-12 hidden err'></p>
+  </form>
+
+
+  <!-- Hidden Modal For DEPT Selection -->
+  <div class="modal" id="dbDeptModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h1>Select Inventory Department</h1>
+          <select id='dbDeptSelection' class='hidden'>
+          </select>
+          <button id='deptSelected' type='button' data-dismiss="modal">Submit Selection</button>
+          <button id='deptSelectedClose' type="button" class='bgred' data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Modal For HOWTOUSE Selection -->
+  <div class="modal" id="howToUseModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h1 id='method1'>Method #1: Use files</h1>
+          <ul>
+            <li><span>&#x2776; </span>Press <kbd>Add Inventory File</kbd> button.</li>
+            <li><span>&#x2777; </span>Press <kbd>Add Reference File</kbd> button.</li>
+            <ul>
+              <li><span>&#x2780; </span>Reference file is only a list of stock item numbers.</li>
+              <li><span>&#x2781; </span>Reference file info is obtained from a database query.</li>
+              <li><span>&#x2782; </span>Press the <kbd>Copy Database Query</kbd> button to obtain the text that will
+                create the list of
+                item numbers when used in the database.</li>
+              <li class='redText'><span>&#x2783; </span>Replace the <em>department name</em> in the copied text with
+                your real
+                department name.</li>
+              <li><span>&#x2784; </span>Copy the text into notepad.</li>
+              <li><span>&#x2785; </span>Select <kbd>file > save</kbd> to save as a text file.</li>
+            </ul>
+            <li><span>&#x2778; </span>Press the <kbd>Get Clean Inventory File</kbd> button and save the cleaned file.
+            </li>
+            <li><span>&#x2779; </span>Press the <kbd>Get Invalid Inventory File</kbd> and download the rejected file.
+            </li>
+          </ul>
+          <button id='downloadRefFile' type="button" class='infoBTN'>Download Example Reference File</button>
+          <button id='copyDBQuery' type="button" class='infoBTN' data-placement="top" data-trigger="focus"
+            animation="true" data-toggle="popover" title="Copied to Clipboard!"
+            data-content="The database query has been copied to your clipboard. Replace department name with actual department name."
+            data-clipboard-target="#dbQueryText">Copy Database
+            Query</button>
+          <textarea id='dbQueryText' class='hidden'></textarea>
+
+
+          <h1 id='method2'>Method #2: Use Database Connection</h1>
+          <ul>
+            <li><span>&#x2776; </span>Press <kbd>Use Database Connection</kbd> button.</li>
+            <li><span>&#x2777; </span>Fill in credentials and press <kbd>Submit</kbd> button.</li>
+            <li><span>&#x2777; </span>Press the <kbd>Save and Continue</kbd> button.</li>
+            <li><span>&#x2778; </span>Wait for program to reload new settings.</li>
+            <li><span>&#x2779; </span>Press the <kbd>Add Inventory File</kbd> button.</li>
+            <li><span>&#x277A; </span>Press the <kbd>Select Department</kbd> button.</li>
+            <ul>
+              <li><span>&#x2780; </span>Program automatically gets inventory list from your department.</li>
+            </ul>
+            <li><span>&#x277B; </span>Select <kbd>Get Clean Inventory File</kbd>button and save the cleaned file.</li>
+            <li><span>&#x277C; </span>Select <kbd>Get Invalid Inventory File</kbd> button and save the file.</li>
+          </ul>
+          <button id='howToUseClose' type="button" class='bgred' data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Modal For Database Config Selection -->
+  <div class="modal" id="dbConfigModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+            <h1>Enter Database Connection Info</h1>
+            <div class='form-group'>
+              <label for='username'>User Name: </label>
+              <input type='text' class='form-control' id='username'>
+            </div>
+
+            <div class='form-group'>
+              <label for='password'>Password: </label>
+              <input type='password' class='form-control' id='password'>
+            </div>
+
+            <div class='form-group'>
+              <label for='server'>Server Name: </label>
+              <input type='text' class='form-control' id='servername'>
+            </div>
+
+            <div class='form-group'>
+              <label for='dbname'>Database Name: </label>
+              <input type='text' class='form-control' id='dbname'>
+            </div>
+          </form>
+          <span id='dbConMsg' class='notAdded'>DB Status: Not Connected</span>
+          <button id='dbConfigConfirm' type="button">Submit</button>
+          <button id='dbConfigClose' type="button" class='bgred' data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- You can also require other files to run in this process -->
+  <script src="./renderer.js"></script>
+  <script src="./public/js/scripts.js"></script>
+</body>
+
+</html>

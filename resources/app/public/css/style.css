@@ -1,0 +1,389 @@
+@font-face {
+  font-family: worksans;
+  src: url(../fonts/WorkSans-Regular.woff2);
+}
+html, body {
+  overflow: hidden;
+  font-family: worksans, sans-serif;
+}
+#formdata {
+  width: 60%;
+  height: 400px;
+  margin: 50px auto 0 auto;
+}
+
+.formBTN,
+.submitBTN,
+.getInvalidBTN {
+  color: #333;
+  text-align: center;
+  font-size: 1rem;
+  padding: 2%;
+  border-radius: 0.3rem;
+  margin: 2% auto;
+  display: block;
+  width: 100%;
+  border: 1px solid #444;
+  background-color: #f1f1f1;
+  box-shadow: 0px 3px 5px rgba(40, 40, 40, 0.5);
+}
+.formBTN:hover {
+  background-color: #fcfcfc;
+  transition-duration: 0.3s;
+  box-shadow: 0px 4px 5px rgba(40, 40, 40, 0.6);
+}
+.submitBTN {
+  background-color: rgba(0, 100, 0, 0.2);
+}
+.getInvalidBTN {
+  background-color: #fdb9bd;
+  color: #800;
+}
+.submitBTN:hover,
+#deptSelected:hover,
+#deptSelectedClose:hover {
+  background-color: rgba(0, 100, 0, 0.3);
+  transition-duration: 0.3s;
+  box-shadow: 0px 4px 5px rgba(40, 40, 40, 0.6);
+}
+.getInvalidBTN:hover {
+  background-color: #ebaeb2;
+}
+.formBTN:active,
+.submitBTN:active,
+.getInvalidBTN:active,
+#deptSelected:active,
+#deptSelectedClose:active {
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  transform: translateY(1px);
+  transition-duration: 0s;
+}
+#dbDeptModal {
+  margin: 20% auto 0 auto;
+}
+#dbDeptModal select {
+  width: 90%;
+  margin: 2% auto;
+  display: block;
+  height: 40px;
+}
+#dbDeptModal option {
+  width: 100% !important;
+  border-radius: 0.2rem;
+  height: 40px;
+  border: 1px solid #333;
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  text-align: center;
+}
+#dbDeptModal h1 {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #444;
+}
+#deptSelected,
+#deptSelectedClose,
+#howToUseClose,
+#dbConfigClose,
+#dbConfigConfirm {
+  color: #444;
+  text-align: center;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+  border: 1px solid #444;
+  display: block;
+  width: 90%;
+  margin: 1% auto;
+  padding: 1% 0;
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  font-weight: bold;
+}
+#deptSelected,
+#deptSelectedClose {
+  padding: 2% 0;
+  margin: 2% auto;
+}
+#deptSelected,
+#deptSelectedClose,
+#dbConfigConfirm {
+  background-color: rgba(0, 100, 0, 0.2);
+}
+#howToUseProgram {
+  background-color: beige;
+  margin-top: 10%;
+}
+#howToUseModal h1,
+#dbConfigModal h1 {
+  font-size: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #888;
+}
+#howToUseModal ul {
+  padding-left: 5%;
+}
+#howToUseModal li {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+#dbConfigModal form {
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+}
+#howToUseModal .infoBTN,
+#dbConfigModal .infoBTN {
+  background-color: beige;
+  width: 90%;
+  margin: 1% auto;
+  display: block;
+  border-radius: 0.2rem;
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  border: 1px solid #444;
+}
+#howToUseModal .infoBTN:hover,
+#dbConfigModal .infoBTN:hover,
+#dbConfigConfirm:hover  {
+  transition-duration: 0.3s;
+  box-shadow: 0px 4px 5px rgba(40, 40, 40, 0.6);
+}
+#howToUseModal .infoBTN:active,
+#dbConfigModal .infoBTN:active,
+#dbConfigConfirm:active {
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  transform: translateY(1px);
+  transition-duration: 0s;
+}
+@keyframes popoverAnimate {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.popover {
+  border: 2px solid green;
+  animation: popoverAnimate;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+.popover-header {
+  color: green;
+}
+.popover-body {
+  color: green;
+}
+#dbConMsg {
+  display: block;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 0.5rem;
+}
+label {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+#dbConnectBTN,
+#dbDelBTN {
+  color: #333;
+  text-align: center;
+  font-size: 1rem;
+  padding: 2% 0;
+  border-radius: 0.3rem;
+  margin: 2% 0;
+  border: 1px solid #444;
+  box-shadow: 0px 3px 5px rgba(40, 40, 40, 0.5);
+  margin-top: 0;
+}
+#dbConnectBTN {
+  background-color: #f1f1f1;
+  width: 79%;
+  float: left;
+  text-align: right;
+  padding-right: 1.5%;
+}
+#dbConnectBTN:hover {
+  background-color: #fcfcfc;
+}
+#dbDelBTN {
+  width: 20%;
+  float: right;
+}
+#dbConnectBTN:hover,
+#dbDelBTN:hover {
+  transition-duration: 0.3s;
+  box-shadow: 0px 4px 5px rgba(40, 40, 40, 0.6);
+}
+#dbConnectBTN:active,
+#dbDelBTN:active {
+  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.7);
+  transform: translateY(1px);
+  transition-duration: 0s;
+}
+#howToUseModal li {
+  padding: 0.5% 0;
+}
+#method2 {
+  margin-top: 100px;
+}
+.num1,
+.num2,
+.num3 {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  height: 0px;
+  top: -6px;
+  color: #444;
+}
+
+
+
+/* Helper Classes */
+.hidden {
+  display: none;
+}
+.err {
+  color: #800;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0;
+}
+#cleanAdd {
+  font-weight: bold;
+}
+.notAdded,
+.added {
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: block;
+}
+.notAdded {
+  color: darkgrey;
+}
+.added {
+  color: #080;
+}
+.bgred {
+  background-color: #FF4136 !important;
+}
+.bgred:hover {
+  background-color: #da352d !important;
+}
+.redText {
+  color: #ff4136;
+}
+.blueText {
+  color: cornflowerblue;
+}
+.bluebg {
+  background-color: rgb(69, 132, 187) !important;
+  color: #f1f1f1 !important;
+}
+.pad0 {
+  padding: 0 !important;
+}
+.opacity0 {
+  opacity: 0;
+}
+.opacity100 {
+  opacity: 100;
+}
+.check {
+  color: #080;
+  position: relative;
+  float: left;
+  left: 5%;
+}
+
+
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+ 
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+@media (min-width: 1px) and (max-width: 575px) {
+  #formdata {
+    width: 95%;
+  }
+  #dbConnectBTN,
+  #dbDelBTN {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  #dbDeptModal {
+    margin: 4% auto 0 auto;
+    }
+}
+ 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+ #formdata {
+   width: 90%;
+ }
+ #dbDeptModal {
+  margin: 2% auto 0 auto;
+  }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+ #formdata {
+   width: 70%;
+ }
+ #dbDeptModal {
+  margin: 4% auto 0 auto;
+  }
+  #howToUseProgram {
+    margin-top: 8%;
+  }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+ #formdata {
+   width: 60%;
+ }
+ #dbDeptModal {
+  margin: 6% auto 0 auto;
+  }
+  #howToUseProgram {
+    margin-top: 6%;
+  }
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  #formdata {
+    margin-top: 5%;
+    width: 50%;
+  }
+  #dbDeptModal {
+    margin: 0 auto;
+  }
+  .formBTN,
+  .submitBTN,
+  .getInvalidBTN {
+    padding: 1%;
+    margin: 1% auto;
+  }
+  #howToUseProgram {
+    margin-top: 5%;
+  }
+}
